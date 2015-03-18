@@ -4,10 +4,6 @@ module QuoteMe
 
   describe Calculation do 
 
-    let(:calculation) do 
-      Calculation.new( {doors: 10, house: 50,contents: 30, windows: 20} )
-    end
-
     let(:insurer) do 
       insurer = double("Insurer")
       allow(insurer).to receive(:name) { "A"}
@@ -23,9 +19,8 @@ module QuoteMe
       Rule.all      
     end
 
-
-    it "should respond to covers" do 
-      expect(calculation.covers).to eq({doors: 10, house: 50,contents: 30, windows: 20})
+    let(:calculation) do 
+      Calculation.new( {doors: 10, house: 50,contents: 30, windows: 20}, rules )
     end
 
     it "should return the 3 most expensive covers in a sorted array" do

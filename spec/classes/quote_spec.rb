@@ -6,11 +6,11 @@ module QuoteMe
     include QuoteHelpers
 
     let(:quote) { Quote.new(
-       {"user"=>
-        { "name"=>"Craig",
-          "notify_by"=>"email",
-          "notify_to"=>"lefthandcraig@gmail.com"},
-          "covers"=>{"house"=>50, "contents"=>30, "windows"=>20, "doors" =>10}}
+       {user:
+        { name: "Craig",
+          notify_by: "email",
+          notify_to: "lefthandcraig@gmail.com"},
+          covers: {house: 50, contents: 30, windows: 20, doors: 10}}
       ) }
 
     it "should be an instance of Quote" do  

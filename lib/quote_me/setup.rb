@@ -5,7 +5,7 @@ module QuoteMe
     attr_reader :data
 
     def initialize(path='lib/config.yml')
-      @data = Hashie::Mash.new(yaml(path))
+      @data = ValidatedHash.new(path,:yaml)
     end
 
     def make
@@ -15,11 +15,7 @@ module QuoteMe
     end
 
     private
-
-    def yaml(path)
-      YAML::load_file(path)
-    end
-
+    
     def data_by_env
       data[QuoteMe.env]
     end

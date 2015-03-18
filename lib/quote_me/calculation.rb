@@ -4,10 +4,10 @@ module QuoteMe
 
     class CoverNotProvidedError < StandardError;end
 
-    attr_reader :covers
 
-    def initialize(covers)
+    def initialize(covers,rules=Rule.all)
       @covers = covers
+      @rules = rules
     end
 
     def calculate(covers_offered)
@@ -15,6 +15,8 @@ module QuoteMe
     end
 
     private
+
+    attr_reader :covers, :rules
 
     def get_total(covers_offered)
       covers_offered.inject(0) {|i,cover| i + get_cover_total(cover)}
@@ -36,9 +38,9 @@ module QuoteMe
 
       case count[0]
       when 1
-        Rule.all.select {|r| r.covers == count[0] && r.position == count[0]}.first
+        rules.select {|r| r.covers == count[0] && r.position == count[0]}.first
       when 2
-        Rule.all.select {|r| r.covers == count[0]}.first
+        rules.select {|r| r.covers == count[0]}.first
       end
     end
 

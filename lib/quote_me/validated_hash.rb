@@ -2,8 +2,10 @@ module QuoteMe
 
   class ValidatedHash
 
-    def initialize(request)
-      @data = Hashie::Mash.new(JSON.parse(request))
+    # make this support different file formats
+
+    def initialize(request,format=:json)
+      @data = Hashie::Mash.new(fetch_by_format(request,format))
     rescue
       raise InvalidRequestFormat
     end
@@ -18,7 +20,24 @@ module QuoteMe
 
     private 
 
-    attr_accessor :data    
+    attr_accessor :data 
+
+    def fetch_by_format(request,format)
+      case format
+      when :json
+        fetch_json(request)
+      when :yaml
+        fetch_yaml(request)
+      end
+    end   
+
+    def fetch_json(request)
+      JSON.parse(request)
+    end
+
+    def fetch_yaml(request)
+      YAML::load_file(request)
+    end
 
     class InvalidRequestFormat < StandardError; end
 

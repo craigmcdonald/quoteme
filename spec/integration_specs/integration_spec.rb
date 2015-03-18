@@ -57,6 +57,7 @@ things to test:
 
 things to build:
 
+* ValidatedHash should support yaml and hashes
 * folder monitor - https://github.com/guard/listen
 * deamonize - https://github.com/thuehlinger/daemons
 * emailer - https://github.com/benprew/pony
