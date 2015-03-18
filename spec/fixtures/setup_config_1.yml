@@ -1,0 +1,6 @@
+defaults: &defaults
+  insurers:
+    class: Insurer
+    path: spec/fixtures/insurers.json
+test:
+  <<: *defaults

@@ -1,0 +1,12 @@
+defaults: &defaults
+  calculation:
+    class: Calculation
+    count: 3
+    order: asc
+  rules: 
+    class: Rule
+    path:  spec/fixtures/rules.json
+
+test:
+  <<: *defaults
+

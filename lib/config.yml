@@ -1,0 +1,17 @@
+defaults: &defaults
+  insurers:
+    class: Insurer
+    path: spec/fixtures/insurers.json
+  calculation:
+    class: Calculation
+    count: 3
+    order: asc
+  rules: 
+    class: Rule
+    path:  spec/fixtures/rules.json
+
+test:
+  <<: *defaults
+
+development:
+  <<: *defaults
