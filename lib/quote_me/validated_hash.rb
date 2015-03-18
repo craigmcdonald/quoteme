@@ -10,6 +10,8 @@ module QuoteMe
       raise InvalidRequestFormat
     end
 
+    private
+
     def method_missing(method,*a,&b)
       data.send(method,*a,&b)
     end
@@ -17,8 +19,6 @@ module QuoteMe
     def respond_to?(method)
       data.respond_to?(method)
     end
-
-    private 
 
     attr_accessor :data 
 

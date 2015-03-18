@@ -9,7 +9,6 @@ module QuoteMe
     end
     field :covers
     
-
     def generate
       insurer_quotes = quotes_from_insurers
       return insurer_quotes unless insurer_quotes.empty?
@@ -20,8 +19,7 @@ module QuoteMe
 
     def quotes_from_insurers
       @quotes_from_insurers = \
-      Insurer.all
-      .collect {|insurer| quote_hash(insurer)}
+      insurers.collect {|insurer| quote_hash(insurer)}
       .reject {|h| h == nil }
       .sort_by {|h| h.values[1] }
     end
@@ -32,10 +30,11 @@ module QuoteMe
       nil
     end
 
-    attr_reader :calculation
+    attr_reader :calculation, :insurers
 
     def after_initialize
       @calculation = Calculation.new(covers)
+      @insurers = Insurer.all
     end
 
   end

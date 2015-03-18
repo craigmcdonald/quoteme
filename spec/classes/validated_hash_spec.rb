@@ -31,6 +31,18 @@ module QuoteMe
 
     end
 
+    context "receiving a valid yaml file" do 
+
+       before(:each) do
+        yaml = 'spec/fixtures/setup_config_1.yml'
+        @validated_hash = ValidatedHash.new(yaml,:yaml)
+      end
+
+      it "should respond to user" do
+        expect(@validated_hash).to respond_to(:test)
+      end
+    end
+
 
   end
 
